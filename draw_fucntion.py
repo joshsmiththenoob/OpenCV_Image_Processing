@@ -1,3 +1,5 @@
+# drawing 3-D plot f(x,y) 
+
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
