@@ -5,13 +5,14 @@ def cv2show(name : str, img ):
     cv2.imshow(name, img)
     cv2.waitKey(0)
 
-img1 = cv2.imread('./1.jpg',0)
-img1 = cv2.resize(img1,(0,0),fx = 0.8, fy = 0.8)
+if __name__ == '__main__':
+    img1 = cv2.imread(r'./1.jpg',0)
+    img1 = cv2.resize(img1,(0,0),fx = 0.8, fy = 0.8)
 
-print('圖形格式為 (高，寬，通道數) :', img1.shape)
-print(img1)
+    print('圖形格式為 (高，寬，通道數) :', img1.shape)
+    print(img1)
 
-# pixel 於 X 方向 (左到右 → ) 的圖像梯度
+    # pixel 於 X 方向 (左到右 → ) 的圖像梯度
 
 
 # 3 * 3 Sobel filter取得計算pixel的梯度
@@ -40,7 +41,11 @@ cv2show('Sobel XY', sobelxy)
 
 # 如果我直接使用 cv2.Sobel(src,depth,1,1,ksize=3) : 不就可以達成 X - Y 方向的圖像梯度計算了嗎?
 # 但是，與分別解析後相加的效果來說，直接呼叫函數的結果較差!
-sobelxy_direct = cv2.Sobel(newimg1, cv2.CV_64F, 1, 1 ,ksize=3)
+sobelxy_direct = cv2.Sobel(newimg1, -1, 1, 1 ,ksize=3)
 sobelxy_direct = cv2.convertScaleAbs(sobelxy_direct)
 cv2show('Sobel XY direct', sobelxy_direct)
+
+sobelxy_direct = cv2.Sobel(newimg1, cv2.CV_64F, 1, 1 ,ksize=3)
+sobelxy_direct = cv2.convertScaleAbs(sobelxy_direct)
+cv2show('Sobel XY direct2', sobelxy_direct)
 print('分別解析 X 、 Y 再加總的效果會比直接使用sobel方法還要好')
