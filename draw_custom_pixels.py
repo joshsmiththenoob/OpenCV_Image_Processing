@@ -9,5 +9,7 @@ print(img,type(img))
 cv2.imshow("Random Image", zoomed)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-crop_img=img[0:10,0:10]
+crop_img=img[0:1,0:2]
 print(crop_img,crop_img.shape)
+list = [1,2,3]
+print(list[0:2])
