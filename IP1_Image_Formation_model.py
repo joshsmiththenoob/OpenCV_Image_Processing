@@ -18,11 +18,11 @@ class Img_Format_Model:
         nr, nc = f.shape[:2] # nr : numbers of row (heigh) ; nc : numbers of coloum (width) -> image.shape : H,W,C
         illumination = np.zeros([nr,nc], dtype = np.float32)
         
-        # Simulate point of light source - Illumination function : it's intensity distribution of section was like 2-DGuassian distribution
+        # Simulate point of light source - Illumination function : it's intensity distribution of section was like 2-DGaussian distribution
         for x in range(nr) :
             for y in range(nc) : # 每一列中的每一行(欄)  -> deal with each pixel in all columns in specific row
+                # We got 2D Gaussian distriution where values are between 0 and 1
                 illumination[x, y] = np.exp(-(((x - x0)**2 + (y - y0)**2) / (2 * sigma**2)))
-                illumination[x, y] = np.exp(-((x - x0) ** 2 + (y - y0) ** 2) / (2 * sigma ** 2))
                 
         # Illuminate the image
         for x in range(nr) :
@@ -40,7 +40,7 @@ def cv2show(name : str, img ):
     cv2.waitKey(0)
 
 def main() :
-    img = cv2.imread('./1.jpg')
+    img = cv2.imread('./raiden_shogun.jpg')
     nr,nc = img.shape[:2]
     print(nr,nc)
     # get center coordinate : (x0,y0) 為高斯分布的平均值 → 高斯分布中，分布最高的位置(=高斯分布的中心) → 打光的中心點(Center position in Illuminated area)
